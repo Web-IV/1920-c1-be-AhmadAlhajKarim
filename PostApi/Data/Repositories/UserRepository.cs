@@ -22,42 +22,43 @@ namespace PostApi.Data.Repositories
 
         public void Add(User user)
         {
-            throw new NotImplementedException();
+            _context.Add(user);
         }
 
         public void Delete(User user)
         {
-            throw new NotImplementedException();
+            _context.Remove(user);
         }
 
         public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _users.Include(u => u.Posts).ToList();
         }
 
         public User GetBy(int id)
-        {
-            throw new NotImplementedException();
+        {          
+            return _users.Include(u => u.Posts).SingleOrDefault(u => u.Id == id);
         }
 
-        public IEnumerable<User> GetBy(string name = null)
+        public User GetBy(string name = null)
         {
-            throw new NotImplementedException();
+            return _users.Include(u => u.Posts).SingleOrDefault(u => u.Name.Contains(name));
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
         public bool TryGetUser(int id, out User user)
         {
-            throw new NotImplementedException();
+            user = _context.Users.Include(u => u.Posts).FirstOrDefault(t => t.Id == id);
+            return user != null;
         }
 
         public void Update(User user)
         {
-            throw new NotImplementedException();
+            _context.Update(user);
         }
     }
 }

@@ -27,10 +27,10 @@ namespace PostApi.Controllers
         /// </summary>
         /// <returns>array of users</returns>
         [HttpGet]
-        public IEnumerable<User> GetUsers(string name = null)
+        public ActionResult<User> GetUser(string name = null)
         {
             if (string.IsNullOrEmpty(name))
-                return _userRepository.GetAll();
+                return NotFound();
             return _userRepository.GetBy(name);
         }
 
@@ -78,11 +78,11 @@ namespace PostApi.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Recipes/5
+        // DELETE: api/User/5
         /// <summary>
-        /// Deletes a recipe
+        /// Deletes a user
         /// </summary>
-        /// <param name="id">the id of the recipe to be deleted</param>
+        /// <param name="id">the id of the user to be deleted</param>
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
@@ -98,11 +98,11 @@ namespace PostApi.Controllers
         }
 
         /// <summary>
-        /// Get an post for a user
+        /// Get a post for a user
         /// </summary>
         /// <param name="id">id of the user</param>
         /// <param name="ingredientId">id of the post</param>
-        [HttpGet("{id}/ingredients/{ingredientId}")]
+        [HttpGet("{id}/posts/{postId}")]
         public ActionResult<Post> GetPost(int id, int postId)
         {
             if (!_userRepository.TryGetUser(id, out var user))
@@ -120,8 +120,8 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="id">the id of the user</param>
         /// <param name="ingredient">the post to be added</param>
-        [HttpPost("{id}/ingredients")]
-        public ActionResult<Post> PostIngredient(int id, PostDTO post)
+        [HttpPost("{id}/post")]
+        public ActionResult<Post> PostAPost(int id, PostDTO post)
         {
             if (!_userRepository.TryGetUser(id, out var user))
             {

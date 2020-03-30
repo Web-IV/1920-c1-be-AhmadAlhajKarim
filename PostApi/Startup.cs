@@ -1,15 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using PostApi.Data;
+using PostApi.Data.Repositories;
+using PostApi.Models;
+using RecipeApi.Data;
 
 namespace PostApi
 {
@@ -26,7 +25,22 @@ namespace PostApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerDocument();
+            services.AddDbContext<UserContext>(options =>
+          options.UseSqlServer(Configuration.GetConnectionString("UserContext")));
+
+            services.AddScoped<UserDataInitializer>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            // Register the Swagger services
+            services.AddOpenApiDocument(c =>
+            {
+                c.DocumentName = "apidocs";
+                c.Title = "Users API";
+                c.Version = "v1";
+                c.Description = "The Users API documentation description.";
+            }); 
+            //for OpenAPI 3.0 else AddSwaggerDocument();
+
+            services.AddCors(options => options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin()));
 
 
         }

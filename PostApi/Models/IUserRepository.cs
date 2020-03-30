@@ -11,7 +11,7 @@ namespace PostApi.Models
         User GetBy(int id);
         bool TryGetUser(int id, out User user);
         IEnumerable<User> GetAll();
-        IEnumerable<User> GetBy(string name = null);
+        User GetBy(string name = null);
         void Add(User user);
         void Delete(User user);
         void Update(User user);

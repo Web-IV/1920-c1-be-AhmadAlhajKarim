@@ -23,15 +23,15 @@ namespace PostApi.Data
                 .HasForeignKey("UserId");
         
             builder.Entity<User>().HasData(
-                 new User { Id = 1, Name = "Ahmad", Password= "ahmad", Location = "Gent" },
-                 new User { Id = 2, Name = "Test",Password = "test", Location = "Brugge"}
+                 new User { Id= 1, Name = "Ahmad", Password= "ahmad", Location = "Gent" },
+                 new User {Id = 2, Name = "Test",Password = "test", Location = "Brugge"}
   );
 
             builder.Entity<Post>().HasData(
                     //Shadow property can be used for the foreign key, in combination with anaonymous objects
-                    new { Id = 1, Title= "Pos1", UserId = 1, Location = "Gent" },
-                    new { Id = 2, Name = "Post2", UserId = 1, Location = "Hasselt" },
-                    new { Id = 3, Name = "Pos3" , UserId = 1, Location = "Brugge" }
+                    new { Id = 1, Title = "Pos1", UserId = 1, Location = "Gent" },
+                    new { Id = 2, Title = "Post2", UserId = 1, Location = "Hasselt" },
+                    new { Id = 3, Title = "Pos3" , UserId = 1, Location = "Brugge" }
                  );
         }
 

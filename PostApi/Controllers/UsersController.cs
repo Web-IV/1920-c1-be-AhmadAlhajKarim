@@ -21,11 +21,24 @@ namespace PostApi.Controllers
             _userRepository = context;
         }
 
-        // GET: api/Users
+
+    /*    // GET: api/Users
         /// <summary>
-        /// Get all users ordered by name
+        /// Get all user ordered by name
         /// </summary>
         /// <returns>array of users</returns>
+        [HttpGet]
+        public IEnumerable<User> GetUsers()
+        {
+                return _userRepository.GetAll();
+        }*/
+
+        // GET: api/Users/ahmad
+        /// <summary>
+        /// Get the user with given name
+        /// </summary>
+        /// <param name="name">the name of the user</param>
+        /// <returns>The user</returns>
         [HttpGet]
         public ActionResult<User> GetUser(string name = null)
         {
@@ -48,24 +61,13 @@ namespace PostApi.Controllers
             return user;
         }
 
-        /*[HttpPost]
-        public ActionResult<User> PostUser(UserDTO user)
-        {
-            User newUser = new User() { Name = user.Name, Password = user.Password };
-            foreach (var i in recipe.Ingredients)
-                newUser.AddPost(new Post(i.Title, i.Amount, i.Unit));
-            _recipeRepository.Add(recipeToCreate);
-            _recipeRepository.SaveChanges();
-
-            return CreatedAtAction(nameof(GetRecipe), new { id = recipeToCreate.Id }, recipeToCreate);
-        }*/
 
         // PUT: api/Users/5
         /// <summary>
         /// Modifies a user
         /// </summary>
         /// <param name="id">id of the user to be modified</param>
-        /// <param name="recipe">the modified user</param>
+        /// <param name="user">the modified user</param>
         [HttpPut("{id}")]
         public IActionResult PutUser(int id, User user)
         {
@@ -116,7 +118,7 @@ namespace PostApi.Controllers
         }
 
         /// <summary>
-        /// Adds a post to a user
+        /// Add a post to a user
         /// </summary>
         /// <param name="id">the id of the user</param>
         /// <param name="post">the post to be added</param>

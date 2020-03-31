@@ -10,7 +10,10 @@ namespace PostApi.Models
     public class User
     {
         public ICollection<Post> Posts { get; private set; }
+
+        [Required]
         public int Id { get; set; }
+        [Required]
 
         public string Location { set; get; }
 

@@ -9,22 +9,15 @@ namespace RecipeApi.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public string Title { get; set; }
 
-        [Required]
         public int UserId { set; get; }
-        [Required]
         public string Location { set; get; }
-        [Required]
-        public DateTime Created { get; set; }
 
-        [Required]
         public string PictureUrl { get; set; }    
 
         public Post()
         {
-            Created = DateTime.Now;
         }
 
         public Post(string title, string locationn, string url) : this()

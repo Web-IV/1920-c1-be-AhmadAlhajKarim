@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -41,12 +40,10 @@ namespace PostApi
             //for OpenAPI 3.0 else AddSwaggerDocument();
 
             services.AddCors(options => options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin()));
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserDataInitializer userDataInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -66,6 +63,7 @@ namespace PostApi
             {
                 endpoints.MapControllers();
             });
+            userDataInitializer.InitializeData();
         }
     }
 }

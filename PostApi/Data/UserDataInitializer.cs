@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using PostApi.Data;
+﻿using PostApi.Data;
 
 namespace RecipeApi.Data
 {

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PostApi.Models;
-using RecipeApi.Models;
 
 namespace PostApi.Data.Repositories
 {
@@ -52,7 +49,7 @@ namespace PostApi.Data.Repositories
 
         public bool TryGetUser(int id, out User user)
         {
-            user = _context.Users.Include(u => u.Posts).FirstOrDefault(t => t.Id == id);
+            user = _context.Users.Include(u => u.Posts).FirstOrDefault(u => u.Id == id);
             return user != null;
         }
 

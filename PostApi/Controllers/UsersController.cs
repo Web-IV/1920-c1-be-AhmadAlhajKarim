@@ -101,7 +101,7 @@ namespace PostApi.Controllers
         /// Get a post for a user
         /// </summary>
         /// <param name="id">id of the user</param>
-        /// <param name="ingredientId">id of the post</param>
+        /// <param name="postId">id of the post</param>
         [HttpGet("{id}/posts/{postId}")]
         public ActionResult<Post> GetPost(int id, int postId)
         {
@@ -119,7 +119,7 @@ namespace PostApi.Controllers
         /// Adds a post to a user
         /// </summary>
         /// <param name="id">the id of the user</param>
-        /// <param name="ingredient">the post to be added</param>
+        /// <param name="post">the post to be added</param>
         [HttpPost("{id}/post")]
         public ActionResult<Post> PostAPost(int id, PostDTO post)
         {

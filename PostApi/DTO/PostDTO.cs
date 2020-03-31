@@ -12,7 +12,6 @@ namespace PostApi.DTO
         public string Title { set; get; }
         [Required]
         public string Location { set; get; }
-        [Required]
         public DateTime Created { get; set; }
         public string PictureUrl { get; set; }
     }

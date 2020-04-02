@@ -39,7 +39,7 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="name">the name of the user</param>
         /// <returns>The user</returns>
-        [HttpGet]
+        [HttpGet("{name}")]
         public ActionResult<User> GetUser(string name = null)
         {
             if (string.IsNullOrEmpty(name))

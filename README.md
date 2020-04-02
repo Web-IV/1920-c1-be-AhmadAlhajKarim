@@ -1,3 +1,6 @@
+### DOMAIN CLASS DIAGRAM
+![](images/diagram.PNG)
+
 ### USERS API
 ![](images/2.PNG)
 

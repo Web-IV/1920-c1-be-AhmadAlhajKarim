@@ -22,7 +22,8 @@ namespace PostApi.Controllers
         }
 
 
-    /*    // GET: api/Users
+
+       // GET: api/Users
         /// <summary>
         /// Get all user ordered by name
         /// </summary>
@@ -30,22 +31,23 @@ namespace PostApi.Controllers
         [HttpGet]
         public IEnumerable<User> GetUsers()
         {
-                return _userRepository.GetAll();
-        }*/
-
-        // GET: api/Users/ahmad
-        /// <summary>
-        /// Get the user with given name
-        /// </summary>
-        /// <param name="name">the name of the user</param>
-        /// <returns>The user</returns>
-        [HttpGet("{name}")]
-        public ActionResult<User> GetUser(string name = null)
-        {
-            if (string.IsNullOrEmpty(name))
-                return NotFound();
-            return _userRepository.GetBy(name);
+            return _userRepository.GetAll();
         }
+
+
+        /*      // GET: api/Users/ahmad
+              /// <summary>
+              /// Get the user with given name
+              /// </summary>
+              /// <param name="name">the name of the user</param>
+              /// <returns>The user</returns>
+              [HttpGet("{name}")]
+              public ActionResult<User> GetUser(string name = null)
+              {
+                  if (string.IsNullOrEmpty(name))
+                      return NotFound();
+                  return _userRepository.GetBy(name);
+              }*/
 
         // GET: api/Users/5
         /// <summary>
@@ -129,7 +131,7 @@ namespace PostApi.Controllers
             {
                 return NotFound();
             }
-            var newPost = new Post(post.Title, post.Location, post.PictureUrl);
+            var newPost = new Post(post.Title, post.Location, post.PictureUrl, post.Date);
             user.AddPost(newPost);
             _userRepository.SaveChanges();
             return CreatedAtAction("GetPost", new { id = user.Id, postId = newPost.Id }, newPost);

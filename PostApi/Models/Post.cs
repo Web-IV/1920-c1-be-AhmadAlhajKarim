@@ -10,24 +10,26 @@ namespace RecipeApi.Models
         [Required]
         public int Id { get; set; }
         [Required]
-
         public string Title { get; set; }
         [Required]
 
         public int UserId { set; get; }
         [Required]
         public string Location { set; get; }
-        public string PictureUrl { get; set; }    
+        public string PictureUrl { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
 
         public Post()
         {
         }
 
-        public Post(string title, string locationn, string url) : this()
+        public Post(string title, string locationn, string url, DateTime date) : this()
         {
             Title = title;
             Location = locationn;
             PictureUrl = url;
+            Date = date;
         }
     }
 }

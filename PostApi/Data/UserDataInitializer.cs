@@ -1,4 +1,6 @@
-﻿using PostApi.Data;
+﻿using System;
+using System.Linq;
+using PostApi.Data;
 
 namespace RecipeApi.Data
 {
@@ -16,7 +18,8 @@ namespace RecipeApi.Data
             _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated())
             {
-                //seeding the database with recipes, see DBContext               
+                //seeding the database with recipes, see DBContext      
+
             }
         }
 

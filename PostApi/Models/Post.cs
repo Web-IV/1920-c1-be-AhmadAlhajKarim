@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RecipeApi.Models
 {
@@ -16,7 +17,9 @@ namespace RecipeApi.Models
         public int UserId { set; get; }
         [Required]
         public string Location { set; get; }
-        public string PictureUrl { get; set; }
+        [Required]
+
+        public string Picture { set; get; }
         [Required]
         public DateTime Date { get; set; }
 
@@ -24,11 +27,11 @@ namespace RecipeApi.Models
         {
         }
 
-        public Post(string title, string locationn, string url, DateTime date) : this()
+        public Post(string title, string locationn, string picture, DateTime date) : this()
         {
             Title = title;
             Location = locationn;
-            PictureUrl = url;
+            Picture = picture;
             Date = date;
         }
     }

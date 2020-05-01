@@ -13,6 +13,6 @@ namespace PostApi.DTO
         [Required]
         public string Location { set; get; }
         public DateTime Date { get; set; }
-        public string PictureUrl { get; set; }
+        public string Picture { get; set; }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using PostApi.Models;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace RecipeApi.Models
@@ -15,6 +16,7 @@ namespace RecipeApi.Models
         [Required]
 
         public int UserId { set; get; }
+
         [Required]
         public string Location { set; get; }
         [Required]
@@ -23,16 +25,20 @@ namespace RecipeApi.Models
         [Required]
         public DateTime Date { get; set; }
 
+        [Required]
+        public bool Reserved { set; get; }
+
         public Post()
         {
         }
 
-        public Post(string title, string locationn, string picture, DateTime date) : this()
+        public Post(string title, string locationn, string picture, DateTime date, bool reserved) : this()
         {
             Title = title;
             Location = locationn;
             Picture = picture;
             Date = date;
+            Reserved = reserved;
         }
     }
 }

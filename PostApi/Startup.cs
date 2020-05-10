@@ -29,6 +29,7 @@ namespace PostApi
 
             services.AddScoped<UserDataInitializer>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
             // Register the Swagger services
             services.AddOpenApiDocument(c =>
             {

@@ -131,10 +131,12 @@ namespace PostApi.Controllers
             {
                 return NotFound();
             }
-            var newPost = new Post(post.Title, post.Location, post.Picture, post.Date);
+            var newPost = new Post(post.Title, post.Location, post.Picture, post.Date, post.Reserved);
             user.AddPost(newPost);
             _userRepository.SaveChanges();
             return CreatedAtAction("GetPost", new { id = user.Id, postId = newPost.Id }, newPost);
         }
+
+
     }
 }

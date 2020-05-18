@@ -13,13 +13,16 @@ namespace PostApi.Models
 
         [Required]
         public int Id { get; set; }
-        [Required]
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Email { get; set; }
 
         public string Location { set; get; }
 
-        [Required]        
         public string Name { set; get; }
-        [Required]
         public string Password { set; get; }
 
         public User()

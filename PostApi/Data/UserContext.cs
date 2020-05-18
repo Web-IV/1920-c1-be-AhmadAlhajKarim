@@ -1,12 +1,13 @@
 ﻿
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PostApi.Models;
 using RecipeApi.Models;
 
 namespace PostApi.Data
 {
-    public class UserContext : DbContext
+    public class UserContext : IdentityDbContext
     {
         public UserContext(DbContextOptions<UserContext> options) : base(options)
         {

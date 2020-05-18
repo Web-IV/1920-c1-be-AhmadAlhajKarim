@@ -124,7 +124,7 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="id">the id of the user</param>
         /// <param name="post">the post to be added</param>
-        [HttpPost("{id}/post")]
+        [HttpPost("{id}")]
         public ActionResult<Post> PostAPost(int id, PostDTO post)
         {
             if (!_userRepository.TryGetUser(id, out var user))

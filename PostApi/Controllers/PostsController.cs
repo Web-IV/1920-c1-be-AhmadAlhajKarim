@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PostApi.Data.Repositories;
@@ -10,7 +12,10 @@ using RecipeApi.Models;
 
 namespace PostApi.Controllers
 {
+    [ApiConventionType(typeof(DefaultApiConventions))]
+    [Produces("application/json")]
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class PostsController : ControllerBase
     {
@@ -29,6 +34,7 @@ namespace PostApi.Controllers
         /// </summary>
         /// <returns>array of post</returns>
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<Post> GetPosts()
         {
             return _postRepo.GetAll().OrderBy(post => post.Date);

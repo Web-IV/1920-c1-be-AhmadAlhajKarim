@@ -29,7 +29,7 @@ namespace RecipeApi.Models
         public bool Reserved { set; get; }
 
         public Post()
-        {
+        {   
         }
 
         public Post(string title, string locationn, string picture, DateTime date, bool reserved) : this()

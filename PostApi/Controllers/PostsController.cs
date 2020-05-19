@@ -34,7 +34,6 @@ namespace PostApi.Controllers
         /// </summary>
         /// <returns>array of post</returns>
         [HttpGet]
-        [AllowAnonymous]
         public IEnumerable<Post> GetPosts()
         {
             return _postRepo.GetAll().OrderBy(post => post.Date);

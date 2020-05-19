@@ -21,7 +21,6 @@ namespace RecipeApi.Data
 
     public async Task InitializeDataAsync()
         {
-            _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated())
             {
                 //seeding the database with recipes, see DBContext         

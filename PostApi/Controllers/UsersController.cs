@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PostApi.DTO;
@@ -10,7 +13,11 @@ using RecipeApi.Models;
 
 namespace PostApi.Controllers
 {
+    [ApiConventionType(typeof(DefaultApiConventions))]
+    [Produces("application/json")]
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -124,14 +131,19 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="id">the id of the user</param>
         /// <param name="post">the post to be added</param>
-        [HttpPost("{id}")]
-        public ActionResult<Post> PostAPost(int id, PostDTO post)
+        [HttpPost("addPost")]
+        public ActionResult<Post> PostAPost(PostDTO post)
         {
-            if (!_userRepository.TryGetUser(id, out var user))
+           /* if (!_userRepository.TryGetUser(id, out var user))
+            {
+                return NotFound();
+            }*/
+            var newPost = new Post(post.Title, post.Location, post.Picture, post.Date, post.Reserved);
+            User user= _userRepository.GetBy(User.Identity.Name);
+            if(user == null)
             {
                 return NotFound();
             }
-            var newPost = new Post(post.Title, post.Location, post.Picture, post.Date, post.Reserved);
             user.AddPost(newPost);
             _userRepository.SaveChanges();
             return CreatedAtAction("GetPost", new { id = user.Id, postId = newPost.Id }, newPost);

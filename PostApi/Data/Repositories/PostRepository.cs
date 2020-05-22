@@ -10,7 +10,6 @@ namespace PostApi.Data.Repositories
 {
     public class PostRepository : IPostRepository
     {
-        
 
             private readonly UserContext _context;
             private readonly DbSet<Post> _posts;
@@ -32,11 +31,6 @@ namespace PostApi.Data.Repositories
                 return _posts.SingleOrDefault(u => u.Id == id);
             }
 
-        public Post GetBy(string name = null)
-        {
-            return _posts.SingleOrDefault(u => u.Title  == name);
-        }
-
         public void SaveChanges()
             {
                 _context.SaveChanges();
@@ -48,8 +42,19 @@ namespace PostApi.Data.Repositories
                 _context.Update(post);
                 
             }
+
+        public IEnumerable<Post> GetBy(string location = null)
+        {
+        var posts = _posts.AsQueryable();
+            if (!string.IsNullOrEmpty(location))
+                posts = posts.Where(r => r.Location.IndexOf(location) >= 0);
+           
+            return posts.OrderByDescending(r => r.Date).ToList();
         }
-    
+    }
+
+   
+
 
 
 }

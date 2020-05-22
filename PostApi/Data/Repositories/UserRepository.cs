@@ -39,7 +39,7 @@ namespace PostApi.Data.Repositories
 
         public User GetBy(string name = null)
         {
-            return _users.Include(u => u.Posts).SingleOrDefault(u => u.Name.Contains(name));
+            return _users.Include(u => u.Posts).SingleOrDefault(u => u.Email.Contains(name));
         }
 
         public void SaveChanges()

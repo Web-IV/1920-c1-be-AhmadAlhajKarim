@@ -34,9 +34,12 @@ namespace PostApi.Controllers
         /// </summary>
         /// <returns>array of post</returns>
         [HttpGet]
-        public IEnumerable<Post> GetPosts()
+        public IEnumerable<Post> GetPosts(string location = null)
         {
-            return _postRepo.GetAll().OrderBy(post => post.Date);
+            if (string.IsNullOrEmpty(location) )
+                return _postRepo.GetAll().OrderByDescending(post => post.Date);
+
+            return _postRepo.GetBy(location);
         }
 
 

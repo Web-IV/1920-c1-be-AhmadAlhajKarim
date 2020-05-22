@@ -10,7 +10,8 @@ namespace PostApi.Models
     {
         Post GetBy(int id);
         IEnumerable<Post> GetAll();
-        Post GetBy(string name = null);
+        public IEnumerable<Post> GetBy(string location = null);
+       
         void Update(Post post);
         void SaveChanges();
     }

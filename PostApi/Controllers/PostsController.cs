@@ -33,6 +33,8 @@ namespace PostApi.Controllers
         /// Get all posts ordered by date
         /// </summary>
         /// <returns>array of post</returns>
+        
+        [AllowAnonymous]
         [HttpGet]
         public IEnumerable<Post> GetPosts(string location = null)
         {
@@ -49,6 +51,8 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="id">id of the post to be modified</param>
         /// <param name="post">the modified post</param>
+        /// 
+        [AllowAnonymous]
         [HttpPost("{id}")]
         public IActionResult PutPost(int id)
         {
@@ -75,6 +79,8 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="id">the id of the post</param>
         /// <returns>The post</returns>
+        /// 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<Post> GetPost(int id)
         {

@@ -30,11 +30,13 @@ namespace PostApi.Controllers
 
 
 
-       // GET: api/Users
+        // GET: api/Users
         /// <summary>
         /// Get all user ordered by name
         /// </summary>
         /// <returns>array of users</returns>
+        /// 
+        [AllowAnonymous]
         [HttpGet]
         public IEnumerable<User> GetUsers()
         {
@@ -62,6 +64,8 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="id">the id of the user</param>
         /// <returns>The user</returns>
+        /// 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<User> GetUser(int id)
         {
@@ -77,6 +81,8 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="id">id of the user to be modified</param>
         /// <param name="user">the modified user</param>
+        /// 
+        [AllowAnonymous]
         [HttpPut("{id}")]
         public IActionResult PutUser(int id, User user)
         {
@@ -94,7 +100,7 @@ namespace PostApi.Controllers
         /// Deletes a user
         /// </summary>
         /// <param name="id">the id of the user to be deleted</param>
-
+        [AllowAnonymous]
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
@@ -113,6 +119,8 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="id">id of the user</param>
         /// <param name="postId">id of the post</param>
+        /// 
+        [AllowAnonymous]
         [HttpGet("{id}/posts/{postId}")]
         public ActionResult<Post> GetPost(int id, int postId)
         {
@@ -131,6 +139,8 @@ namespace PostApi.Controllers
         /// </summary>
         /// <param name="id">the id of the user</param>
         /// <param name="post">the post to be added</param>
+        /// 
+        [AllowAnonymous]
         [HttpPost("addPost")]
         public ActionResult<Post> PostAPost(PostDTO post)
         {
